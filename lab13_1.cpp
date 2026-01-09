@@ -19,3 +19,43 @@ int main(){
     cout << "Min = " << B[5];
     return 0;
 }
+void stat(const double x[], int N, double y[]) {
+
+    double sum = 0;
+    for (int i = 0; i < N; i++) {
+        sum += x[i];
+    }
+    y[0] = sum / N;
+    
+    double sumSquaredDiff = 0;
+    for (int i = 0; i < N; i++) {
+        sumSquaredDiff += pow(x[i] - y[0], 2);
+    }
+    y[1] = sqrt(sumSquaredDiff / N);
+    
+    double product = 1;
+    for (int i = 0; i < N; i++) {
+        product *= x[i];
+    }
+    y[2] = pow(product, 1.0 / N);
+    
+    double sumReciprocals = 0;
+    for (int i = 0; i < N; i++) {
+        sumReciprocals += 1.0 / x[i];
+    }
+    y[3] = N / sumReciprocals;
+    
+    y[4] = x[0];
+    for (int i = 1; i < N; i++) {
+        if (x[i] > y[4]) {
+            y[4] = x[i];
+        }
+    }
+    
+    y[5] = x[0];
+    for (int i = 1; i < N; i++) {
+        if (x[i] < y[5]) {
+            y[5] = x[i];
+        }
+    }
+}
